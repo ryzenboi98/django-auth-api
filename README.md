@@ -14,7 +14,7 @@ For changing the default configurations feel free to overwrite the files `Docker
 
 ### Steps
 
-1. Download the source code and open a terminal it's main folder.
+1. Download the source code and open a terminal on it's main folder.
 
 2. Start the [Docker](https://www.docker.com) desktop application.
 
