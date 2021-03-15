@@ -24,6 +24,6 @@ For changing the default configurations feel free to overwrite the files `Docker
 
 4. Login with the administrator account which is already defined with username and password as `admin`.
 
-5. Access the Users API at the [localhost:8000/users](http://localhost:8000/users) endpoint.
+5. Access the Users API at the [localhost:8000/users/](http://localhost:8000/users) endpoint.
 
 
