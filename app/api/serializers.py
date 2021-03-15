@@ -11,6 +11,8 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
     password = serializers.CharField(style={'input_type':'password'}, write_only=True)
 
     def validate_password(self, value):
+        if value.isalnum() or not any(c.isdigit() for c in value) or value == value.lower():
+            raise serializers.ValidationError('Password must contains one upper digit, one number and one symbol.')
         password_validation.validate_password(value, self.instance)
         return value
 
