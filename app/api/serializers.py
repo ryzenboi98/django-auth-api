@@ -10,8 +10,6 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
     email = serializers.EmailField(style={'input_type':'email'})
     password = serializers.CharField(style={'input_type':'password'}, write_only=True)
 
-    # h
-
     def validate_password(self, value):
         password_validation.validate_password(value, self.instance)
         return value
