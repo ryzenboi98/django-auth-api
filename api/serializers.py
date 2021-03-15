@@ -1,6 +1,6 @@
 from django.contrib.auth.models import Group
 from rest_framework import serializers
-from django.contrib.auth import get_user_model,password_validation
+from django.contrib.auth import get_user_model, password_validation
 from django.contrib.auth.hashers import make_password
 from rest_framework.validators import UniqueValidator
 
@@ -9,14 +9,23 @@ User = get_user_model()
 class UserSerializer(serializers.HyperlinkedModelSerializer):
     first_name = serializers.CharField(max_length=20)
     last_name = serializers.CharField(max_length=20)
-    username = serializers.CharField(min_length=6, max_length=20, validators=[UniqueValidator(queryset=User.objects.all())])
-    email = serializers.EmailField(style={'input_type':'email'}, validators=[UniqueValidator(queryset=User.objects.all())])
+    username = serializers.CharField(min_length=6, max_length=20,
+                                     validators=[UniqueValidator(queryset=User.objects.all())])
+    email = serializers.EmailField(style={'input_type':'email'},
+                                   validators=[UniqueValidator(queryset=User.objects.all())])
     password = serializers.CharField(style={'input_type':'password'}, write_only=True)
+
+    def validate_username(self, value):
+        if value != value.lower():
+            raise serializers.ValidationError('Username must contain only lowercase characters.')
+
+        return value
 
     def validate_password(self, value):
         if value.isalnum() or not any(c.isdigit() for c in value) or value == value.lower():
             raise serializers.ValidationError('Password must contains one upper digit, one number and one symbol.')
         password_validation.validate_password(value, self.instance)
+
         return value
 
     class Meta:
