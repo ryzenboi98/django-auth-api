@@ -14,11 +14,11 @@ For changing the default configurations feel free to overwrite the files `Docker
 
 ### Steps
 
-1. Download the source code and open it's main folder.
+1. Download the source code and open a terminal it's main folder.
 
 2. Start the [Docker](https://www.docker.com) desktop application.
 
-3. Run the command `docker-compose up` to install all the dependencies into the docker container.
+3. Run the command `docker-compose up` in the terminal to install all the dependencies into the docker container.
 
 3. Make sure you don't have any errors and the Django app is running in the [localhost:8000](http://localhost:8000).
 
