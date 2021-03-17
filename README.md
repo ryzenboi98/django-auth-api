@@ -4,6 +4,15 @@ Django API for users authentication using the Django REST Framework.
 
 Project still in development
 
+## API
+
+The API contains two endpoints, one corresponding to the users and the other to the groups.
+
+[localhost:8000/users]
+[localhost:8000/groups]
+
+The API needs authentication for it's use.
+
 ## Project setup
 
 For compiling this project make sure you have [Docker](https://www.docker.com) installed. It will setup automatically a container image with all the dependencies needed to execute our Django API.
