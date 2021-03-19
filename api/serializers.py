@@ -17,7 +17,7 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
 
     def validate_username(self, value):
         if value != value.lower():
-            raise serializers.ValidationError('Username must contain only lowercase characters.')
+            raise serializers.ValidationError('Username must contains only lowercase characters.')
 
         return value
 
