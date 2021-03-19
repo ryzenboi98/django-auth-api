@@ -26,9 +26,6 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
 
         return value
 
-    def validate_groups(self, value):
-        return value.name
-
     def validate_password(self, value):
         if value.isalnum() or not any(c.isdigit() for c in value) or value == value.lower():
             raise serializers.ValidationError('Password must contains one upper digit, one number and one symbol.')
