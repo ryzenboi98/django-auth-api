@@ -1,8 +1,9 @@
 from django.contrib.auth.models import Group
 from rest_framework import serializers
-from django.contrib.auth import get_user_model, password_validation
+from django.contrib.auth import get_user_model, password_validation, validators
 from django.contrib.auth.hashers import make_password
 from rest_framework.validators import UniqueValidator
+import re
 
 User = get_user_model()
 
@@ -16,8 +17,10 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
     password = serializers.CharField(style={'input_type':'password'}, write_only=True)
 
     def validate_username(self, value):
-        if value != value.lower():
-            raise serializers.ValidationError('Username must contains only lowercase characters.')
+        if not re.match("^[a-z0-9\@\.\+\-\_]*$", value):
+            raise serializers.ValidationError('Enter a valid username. This value may contain only letters, numbers, and @/./+/-/_ characters.')
+
+        value = validators.UnicodeUsernameValidator
 
         return value
 
